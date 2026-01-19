@@ -2,8 +2,53 @@
 // Option A: Include all of Bootstrap
 
 // Include any default variable overrides here (though functions won't be available)
-$primary: #906427;
+$primary: #463deb;
+$primary-hover:  #469ee6;
+
+$primary-text: #111827;
+$secondary-text: #f1efef;
+
+/* Border Radius */
+$radius-lg: 1rem;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // Then add additional custom code here
+
+//-------------------------- HEADER --------------------------
+
+.navbar{
+    // Colle la navbar en haut
+    position: sticky;
+    top: 0;
+
+    // La navbar reste au dessus du reste
+    z-index: 1000;
+}
+
+.navbar-brand{
+    color: $primary;
+    font-size: 1.5rem;
+}
+
+.navbar-brand:hover{
+    color: $primary-hover;
+}
+
+.nav-item{
+    --bs-nav-link-color: #{$primary-text};  
+    --bs-nav-link-hover-color: #{$primary};
+}
+
+.btn-primary{
+    border-radius: $radius-lg;
+    color: $secondary-text;
+    background-color: $primary;
+}
+
+.btn-primary:hover{
+    background-color: $primary-hover;
+    border-color: $primary-hover;
+}
+
+//-------------------------- FIN HEADER --------------------------
