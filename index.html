@@ -74,7 +74,81 @@
         <!-- Le contenu de la page sera injectée ici -->
     </main>
 
-    <footer class="site-footer">Le footer de mon site</footer>
+    <!-- bg-dark : fond sombre | text-light : texte clair | pt-5 : padding-top -->
+    <footer class="bg-secondary text-light pt-5">
+
+        <!-- Container Bootstrap pour centrer le contenu et limiter la largeur -->
+        <div class="container">
+
+            <!-- Row Bootstrap : permet de créer une grille horizontale -->
+            <div class="row">
+
+                <!-- Colonne 1 : présentation -->
+                <!-- col-md-4 : 4 colonnes sur écran moyen et + | mb-4 : marge basse -->
+                <div class="col-md-4 mb-4">
+
+                    <!-- Nom ou logo du site -->
+                    <p class="fw-bold">MonLogo</p>
+
+                    <!-- Phrase de présentation -->
+                    <p>Faites de vos idées des projets, et de l'argent…</p>
+                </div>
+
+                <!-- Colonne 2 : liens de navigation -->
+                <div class="col-md-4 mb-4 text-center">
+
+                    <!-- Titre de la section -->
+                    <h5>Liens utiles</h5>
+
+                    <!-- Liste sans puces -->
+                    <ul class="list-group-item list-unstyled text-center">
+
+                        <!-- Chaque lien est stylisé pour rester clair sur fond sombre -->
+                        <li><a class="list-group-item text-decoration-none active" href="/">Accueil</a></li>
+                        <li><a class="list-group-item text-decoration-none" href="/about">À propos</a></li>
+                        <li><a class="list-group-item text-decoration-none" href="/services">Services</a></li>
+                        <li><a class="list-group-item text-decoration-none" href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Colonne 3 : informations de contact -->
+                <div class="col-md-4 mb-4 ps-5">
+
+                    <!-- Titre de la section -->
+                    <h5>Contact</h5>
+
+                    <!-- Balise sémantique address pour les infos de contact -->
+                    <address class="mb-0">
+
+                        <!-- Email cliquable -->
+                        <p class="mb-1">
+                            Email :
+                            <a class="text-light" href="mailto:contact@monlogo.com">
+                                contact@monlogo.com
+                            </a>
+                        </p>
+
+                        <!-- Téléphone cliquable -->
+                        <p class="mb-0">
+                            Téléphone :
+                            <a class="text-light" href="tel:+33600000000">
+                                +33 6 00 00 00 00
+                            </a>
+                        </p>
+                    </address>
+                </div>
+
+            </div>
+
+        <!-- Séparateur horizontal + espacement -->
+        <div class="text-center border-top pt-3 mt-3">
+
+            <!-- Mention légale -->
+            &copy; 2025 MonLogo. Tous droits réservés.
+        </div>
+
+    </div>
+</footer>
 
     <!-- Inclure le système de routage -->
     <script type="module" src="Router/router.js"></script>
