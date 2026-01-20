@@ -11,6 +11,7 @@ function checkCredentials(){
 
         // Il faudra récupérer le vrai token
         const token = "jhjhklhhfgdftgujjjmhhjgkuyfykgj";
+        setToken(token);
 
         //Retour à la page d'acceuil
         window.location.replace("/");
