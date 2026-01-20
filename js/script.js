@@ -1,4 +1,7 @@
 const tokenCookieName = "accesstoken";
+const signoutBtn = document.getElementById("signout-btn");
+
+signoutBtn.addEventListener("click", signout);
 
 //Sauvegarde le token dans le tokenCookieName pendant 7 jour;
 function setToken(token){
@@ -51,4 +54,15 @@ if(isConnected()){
 }
 else{
     alert("Je ne suis pas connecté");
+}
+
+function signout(){
+    eraseCookie(tokenCookieName);
+
+    // Rafréchie la page
+    window.location.reload();
+}
+
+function eraseCookie(name){
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GTM;';
 }
