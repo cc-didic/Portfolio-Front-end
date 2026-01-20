@@ -7,11 +7,13 @@ btnSignin.addEventListener("click", checkCredentials);
 function checkCredentials(){
     // Donnée factif pour le moment
     if(mailInput.value == "test@mail.com" && passwordInput.value == "123"){
-        alert("Vous êtes connecté");
 
         // Il faudra récupérer le vrai token
         const token = "jhjhklhhfgdftgujjjmhhjgkuyfykgj";
         setToken(token);
+
+        // Placer ce token en cookie
+        setCookie("role", "admin", 7);
 
         //Retour à la page d'acceuil
         window.location.replace("/");
