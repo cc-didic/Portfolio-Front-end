@@ -2,6 +2,7 @@
 @import url("/node_modules/bootstrap-icons/font/bootstrap-icons.scss");
 /* Border Radius */
 /* Border color */
+/* Padding */
 /*!
  * Bootstrap  v5.3.8 (https://getbootstrap.com/)
  * Copyright 2011-2025 The Bootstrap Authors
@@ -12011,7 +12012,7 @@ textarea.form-control-lg {
   border-color: #469ee6;
 }
 
-.photo img {
+.photo img-fluid {
   width: 100%;
   max-width: 400px;
   height: auto;
@@ -12046,12 +12047,12 @@ textarea.form-control-lg {
 }
 
 .img {
-  width: 36px;
-  height: auto;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-footer {
-  color: red;
+.form-signin {
+  border: 1px solid #c6c7c9;
+  padding: 5rem;
+  border-radius: 1rem;
 }/*# sourceMappingURL=main.css.map */
