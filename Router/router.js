@@ -38,9 +38,9 @@ const LoadContentPage = async() => {
     document.getElementById("main-page").innerHTML = html;
 
     // Ajout du contenu JavaScript
-    if(actualRoute.pathJS != ""){
+    if(actualRoute.pathJS !== ""){
         // Création d'une balise script
-        let scriptTag = document.createElement("script");
+        const scriptTag = document.createElement("script");
         scriptTag.setAttribute("type", "text/javascript");
         scriptTag.setAttribute("src", actualRoute.pathJS);
 
