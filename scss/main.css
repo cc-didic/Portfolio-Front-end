@@ -12053,6 +12053,11 @@ textarea.form-control-lg {
 
 .form-signin {
   border: 1px solid #c6c7c9;
-  padding: 5rem;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.form-account {
+  padding: 2rem;
   border-radius: 1rem;
 }/*# sourceMappingURL=main.css.map */
