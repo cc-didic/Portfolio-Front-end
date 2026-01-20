@@ -12,6 +12,12 @@ $secondary-text: #f1efef;
 
 /* Border Radius */
 $radius-lg: 1rem;
+$radius-xl: 1rem;
+
+/* Border color */
+$border-color: #c6c7c9;
+
+$background-color: #f9fafb;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
@@ -19,11 +25,7 @@ $radius-lg: 1rem;
 
 //-------------------------- HEADER --------------------------
 
-.navbar{
-    // Colle la navbar en haut
-    position: sticky;
-    top: 0;
-
+.header-container{
     // La navbar reste au dessus du reste
     z-index: 1000;
 }
@@ -58,13 +60,50 @@ $radius-lg: 1rem;
 //----------------------------- MAIN -----------------------------
 
 
+.photo img-fluid{
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: $radius-xl;
+}
+
+.card-row{
+    height: 100px;
+}
+
+.card-skills{
+    border: 1px solid $border-color;
+}
+
+.card-skill{
+    border-radius: $radius-xl;
+    background-color: $background-color;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.skill{
+    border: 1px solid $border-color;
+    border-radius: $radius-xl;
+    background-color: $background-color;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.img{
+    object-fit: contain;
+}
+
+
 
 //--------------------------- END MAIN ---------------------------
 
 //---------------------------- FOOTER ----------------------------
 
-.list-group-item{
-    align-items: center;
-}
+
 
 //-------------------------- END FOOTER --------------------------
