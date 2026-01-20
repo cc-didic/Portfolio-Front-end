@@ -13,7 +13,6 @@ import Route from "./Route.js";
  *          ["admin"] -> Réserver aux utilisateurs avec le rôle admin
  *          ["admin", "client"] -> Réserver aux utilisateurs avec le rôle client ou admin
 */
-*/
 
 // Définir ici les routes
 export const allRoutes = [
