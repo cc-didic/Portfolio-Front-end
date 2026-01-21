@@ -18,8 +18,8 @@ import Route from "./Route.js";
 export const allRoutes = [
     new Route("/", "Accueil", "/pages/home.html", []),
     new Route("/home", "Accueil", "/pages/home.html", []),
-    new Route("/signin", "Connexion", "/pages/auth/signin.html", ["disconnected"], "/js/auth/signin.js"),
-    new Route("/create-project", "Ajouter un projet", "/pages/auth/createProject.html", ["admin"]),
+    new Route("/signin", "Connexion", "/pages/auth/signin.html", ["disconnected"], "/assets/js/auth/signin.js"),
+    new Route("/create-project", "Ajouter un projet", "/pages/auth/createProject.html", ["admin"], "/assets/js/createProject.js"),
 ];
 
 // Le titre s'affiche comme ceci : Route.titre - websitename
