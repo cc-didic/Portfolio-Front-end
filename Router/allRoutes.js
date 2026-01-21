@@ -16,9 +16,9 @@ import Route from "./Route.js";
 
 // Définir ici les routes
 export const allRoutes = [
-    new Route("/", "Acceuil", "/pages/home.html"),
-    new Route("/signin", "Connexion", "/pages/auth/signin.html", [], "/js/auth/signin.js"),
-    new Route("/create-project", "Ajouter un projet", "/pages/auth/createProject.html"),
+    new Route("/", "Acceuil", "/pages/home.html", []),
+    new Route("/signin", "Connexion", "/pages/auth/signin.html", ["disconnected"], "/js/auth/signin.js"),
+    new Route("/create-project", "Ajouter un projet", "/pages/auth/createProject.html", ["admin"]),
 ];
 
 // Le titre s'affiche comme ceci : Route.titre - websitename
