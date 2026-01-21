@@ -18,7 +18,6 @@ function getToken(){
     return getCookie(tokenCookieName);
 }
 
-// 
 function setCookie(name, value, days){
     let expires = "";
 
@@ -38,8 +37,13 @@ function getCookie(name){
     {
         let c =ca[i];
 
-        while(c.charAt(0)==' ') c = c.substring(1, c.length);
-        if(c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        while(c.startsWith(' ')){
+            c = c.substring(1, c.length);
+        }
+
+        if(c.startsWith(nameEQ)){
+            return c.substring(nameEQ.length, c.length);
+        }
     }
     return null;
 }
@@ -59,7 +63,7 @@ function signout(){
     eraseCookie(RoleCookieName);
 
     // Rafréchie la page
-    window.location.reload();
+    globalThis.location.reload();
 }
 
 function eraseCookie(name){

@@ -16,7 +16,7 @@ function checkCredentials(){
         setCookie("role", "admin", 7);
 
         //Retour à la page d'acceuil
-        window.location.replace("/");
+        globalThis.location.replace("/");
     }
     else{
         mailInput.classList.add("is-invalid");

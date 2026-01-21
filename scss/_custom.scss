@@ -27,6 +27,11 @@ $padding-lg: 2rem;
 
 // Then add additional custom code here
 
+:root {
+    // Hauteur de la navbar pour le scroll
+    scroll-padding-top: 62px;
+}
+
 //-------------------------- HEADER --------------------------
 
 .header-container{

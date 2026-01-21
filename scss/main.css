@@ -11983,6 +11983,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+:root {
+  scroll-padding-top: 62px;
+}
+
 .header-container {
   z-index: 1000;
 }
