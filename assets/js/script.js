@@ -1,3 +1,4 @@
+const apiUrl = "https://localhost:8000/api/";
 const tokenCookieName = "accesstoken";
 const RoleCookieName = "role";
 const signoutBtn = document.getElementById("signout-btn");
@@ -62,8 +63,7 @@ function signout(){
     eraseCookie(tokenCookieName);
     eraseCookie(RoleCookieName);
 
-    // Rafréchie la page
-    globalThis.location.reload();
+    globalThis.location.replace("/");
 }
 
 function eraseCookie(name){
