@@ -7,31 +7,31 @@
                 
             <div class="col-md-6 mb-3">
                 <label for="TitleInput" class="form-label">Titre</label>
-                <input type="text" class="form-control" id="TitleInput" placeholder="Titre du projet">
+                <input type="text" class="form-control" id="TitleInput" placeholder="Titre du projet" required>
             </div>
 
             <div class="mb-3">
                 <label for="DescriptionInput" class="form-label">Description</label>
-                <textarea rows="5" cols="33" class="form-control" id="DescriptiondInput">Description du projet</textarea>
+                <textarea rows="5" cols="33" class="form-control" id="DescriptiondInput" required>Description du projet</textarea>
             </div>
 
             <div class="mb-3">
                 <label for="ImageInput" class="form-label">Image</label>
-                <input type="text" class="form-control" id="ImageInput" placeholder="/assets/images/project/projet.png">
+                <input type="text" class="form-control" id="ImageInput" placeholder="/assets/images/project/projet.png" required>
             </div>
 
             <div class="mb-3">
                 <label for="GithubInput" class="form-label">Github</label>
-                <input type="text" class="form-control" id="Github" placeholder="Http://github.com">
+                <input type="text" class="form-control" id="GithubInput" placeholder="Http://github.com" required>
             </div>
 
             <div class="mb-5">
                 <label for="LiveInput" class="form-label">Live</label>
-                <input type="text" class="form-control" id="Live" placeholder="Http://monsite.com">
+                <input type="text" class="form-control" id="LiveInput" placeholder="Http://monsite.com" required>
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Envoyer</button>
+                <button type="button" class="btn btn-primary" id="create-project-btn">Envoyer</button>
             </div>
 
         </form>
