@@ -16,8 +16,8 @@ import Route from "./Route.js";
 
 // Définir ici les routes
 export const allRoutes = [
-    new Route("/", "Accueil", "/pages/home.html", []),
-    new Route("/home", "Accueil", "/pages/home.html", []),
+    new Route("/", "Accueil", "/pages/home.html", [], "/assets/js/home.js"),
+    new Route("/home", "Accueil", "/pages/home.html", [], "/assets/js/home.js"),
     new Route("/signin", "Connexion", "/pages/auth/signin.html", ["disconnected"], "/assets/js/auth/signin.js"),
     new Route("/create-project", "Ajouter un projet", "/pages/auth/createProject.html", ["ROLE_ADMIN"], "/assets/js/createProject.js"),
 ];
