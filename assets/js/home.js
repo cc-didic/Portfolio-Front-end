@@ -47,14 +47,23 @@ function showAllProjects(result){
     result.forEach(project => {
         const clone = template.content.cloneNode(true);
 
+		// On récupère les id de tous les projets
 		tabId.push(project.id);
 		
-		clone.querySelector(".project-id").id = `button${project.id}`;
+		// Ajout de l'id editBtn{id} à l'id project-edit
+		clone.querySelector(".project-edit").id = `editBtn${project.id}`;
+		// Ajout de l'id deleteBtn{id} à l'id project-delete
+		clone.querySelector(".project-delete").id = `deleteBtn${project.id}`;
+		// Ajout de l'url de l'image
         clone.querySelector(".project-image").src = project.image;
+		// Ajout du titre
         clone.querySelector(".project-title").textContent = project.title;
+		// Ajout de la description
         clone.querySelector(".project-description").textContent = project.description;
-        clone.querySelector(".project-github").href = project.github;
-        clone.querySelector(".project-live").href = project.live;
+        // Ajout du lien Github
+		clone.querySelector(".project-github").href = project.githubUrl;
+		// Ajout du lien live
+        clone.querySelector(".project-live").href = project.liveUrl;
 
         allProjects.appendChild(clone);
 
@@ -65,11 +74,19 @@ function showAllProjects(result){
 
 function getListenEvent(tabId){
 	const deleteProjectBtn = [];
-	tabId.forEach(id => {
-        deleteProjectBtn[id] = document.getElementById("button"+id);
+	const editProjectBtn = [];
 
+	tabId.forEach(id => {
+		editProjectBtn[id] = document.getElementById(`editBtn${id}`);
+        deleteProjectBtn[id] = document.getElementById(`deleteBtn${id}`);
+
+		editProjectBtn[id].addEventListener("click", () => {editProject(id)});
 		deleteProjectBtn[id].addEventListener("click", () => {deleteProject(id)});
     });
+}
+
+function editProject(id){
+	globalThis.location.href = `/edit-project?id=${id}`;
 }
 
 function deleteProject(id){
@@ -98,7 +115,7 @@ function deleteProject(id){
 	.then(() =>{
 		console.log(`Projet ${id} supprimé`);
 		
-		const btn = document.getElementById(`button${id}`);
+		const btn = document.getElementById(`deleteBtn${id}`);
 
         if (btn) {
             btn.closest(".project").remove();

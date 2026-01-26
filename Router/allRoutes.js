@@ -20,6 +20,7 @@ export const allRoutes = [
     new Route("/home", "Accueil", "/pages/home.html", [], "/assets/js/home.js"),
     new Route("/signin", "Connexion", "/pages/auth/signin.html", ["disconnected"], "/assets/js/auth/signin.js"),
     new Route("/create-project", "Ajouter un projet", "/pages/auth/createProject.html", ["ROLE_ADMIN"], "/assets/js/createProject.js"),
+    new Route("/edit-project", "Modifier un projet", "/pages/editProject.html", ["ROLE_ADMIN"], "/assets/js/editProject.js"),
 ];
 
 // Le titre s'affiche comme ceci : Route.titre - websitename

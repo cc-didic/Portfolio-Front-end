@@ -6,7 +6,7 @@ function createProject(){
     let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken(), "Content-Type", "application/json");
 
-    const signin = {
+    const data = {
         title: document.getElementById("TitleInput").value,
         description: document.getElementById("DescriptiondInput").value,
         image: document.getElementById("ImageInput").value,
@@ -17,13 +17,12 @@ function createProject(){
 	let requestOptions = {
 		method : 'POST',
 		headers : myHeaders,
-        body: JSON.stringify(signin),
+        body: JSON.stringify(data),
         redirect: 'follow',
         credentials: "include"
 	};
 
 	// Envoi une requete au serveur
-    console.log(apiUrl+"project");
 	fetch(apiUrl+"project", requestOptions)
 	.then(response =>{
 		if(!response.ok){
