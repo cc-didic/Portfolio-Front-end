@@ -1,9 +1,6 @@
 const allProjects = document.getElementById("all-projects");
 
-
-
 getAllProjects();
-
 
 function getAllProjects(){
 
@@ -55,19 +52,17 @@ function showAllProjects(result){
 		// Ajout de l'id deleteBtn{id} à l'id project-delete
 		clone.querySelector(".project-delete").id = `deleteBtn${project.id}`;
 		// Ajout de l'url de l'image
-        clone.querySelector(".project-image").src = project.image;
+        clone.querySelector(".project-image").src = `/assets/images/project/${project.image}`;
 		// Ajout du titre
         clone.querySelector(".project-title").textContent = project.title;
 		// Ajout de la description
         clone.querySelector(".project-description").textContent = project.description;
         // Ajout du lien Github
-		clone.querySelector(".project-github").href = project.githubUrl;
+		clone.querySelector(".project-github").href = `Https://${project.githubUrl}`;
 		// Ajout du lien live
-        clone.querySelector(".project-live").href = project.liveUrl;
+        clone.querySelector(".project-live").href = `Https://${project.liveUrl}`;
 
         allProjects.appendChild(clone);
-
-		
     });
 	getListenEvent(tabId);
 }

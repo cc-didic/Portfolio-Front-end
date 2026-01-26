@@ -4,7 +4,7 @@ createProjectBtn.addEventListener("click", createProject);
 
 function createProject(){
     let myHeaders = new Headers();
-    myHeaders.append("X-AUTH-TOKEN", getToken(), "Content-Type", "application/json");
+    myHeaders.append("X-AUTH-TOKEN", getToken());
 
     const data = {
         title: document.getElementById("TitleInput").value,
@@ -19,7 +19,6 @@ function createProject(){
 		headers : myHeaders,
         body: JSON.stringify(data),
         redirect: 'follow',
-        credentials: "include"
 	};
 
 	// Envoi une requete au serveur
@@ -30,10 +29,10 @@ function createProject(){
 		}
         return response.json();
 	})
-	.then(result => {
-		console.log(result);
+	.then(() => {
+		globalThis.location.replace("/");
 	})
 	.catch(error => {
-		console.log('error', error);
+		console.log('Error Lors de la création du projet', error);
 	});
 }
