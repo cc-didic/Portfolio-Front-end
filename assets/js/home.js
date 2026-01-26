@@ -1,8 +1,12 @@
-const allProjects = document.getElementById("all-projects")
+const allProjects = document.getElementById("all-projects");
+
+
 
 getAllProjects();
 
+
 function getAllProjects(){
+
     let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
 
@@ -22,7 +26,7 @@ function getAllProjects(){
 			console.log("Impossible de récupérer les informations utilisateur")
 		}
 	})
-	.then(result => {
+	.then(result => {	
 		showAllProjects(result);
 	})
 	.catch(error => {
@@ -32,43 +36,75 @@ function getAllProjects(){
 
 function showAllProjects(result){
 
-    if(!allProjects){
-        console.error("allProjects all-project introuvable");
+    const template = document.getElementById("project-template");
+	let tabId = [];
+
+    if(!template){
+        console.error("template project-template introuvable");
         return;
     }
 
-    allProjects.innerHTML = "";
-
     result.forEach(project => {
-        const projectDiv = document.createElement("div");
-        projectDiv.classList.add("col-12", "col-md-6", "col-lg-4");
+        const clone = template.content.cloneNode(true);
 
-        projectDiv.innerHTML = `<div class="card h-100">
-                                    <div class="action-image-buttons d-flex justify-content-between mx-2 my-2" data-show="admin">
-                                        <button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                                        <button type="button" class="btn btn-outline-primary"><i class="bi bi-trash"></i></button>
-                                    </div>
+		tabId.push(project.id);
+		
+		clone.querySelector(".project-id").id = `button${project.id}`;
+        clone.querySelector(".project-image").src = project.image;
+        clone.querySelector(".project-title").textContent = project.title;
+        clone.querySelector(".project-description").textContent = project.description;
+        clone.querySelector(".project-github").href = project.github;
+        clone.querySelector(".project-live").href = project.live;
 
-                                    <img src="${project.image}" class="card-img-top" alt="Portfolio">
+        allProjects.appendChild(clone);
 
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">${project.title}</h5>
-                                        <p class="card-text">${project.description}</p>
-                                    </div>
-              
-                                    <div class="d-flex justify-content-between mx-4 mb-4">
-                                        <a href="${project.github}" class="btn btn-primary">Github</a>
-                                        <a href="${project.live}" class="btn btn-primary">URL</a>
-                                    </div>
-                                </div>
-                            `;
-        allProjects.appendChild(projectDiv);
+		
+    });
+	getListenEvent(tabId);
+}
+
+function getListenEvent(tabId){
+	const deleteProjectBtn = [];
+	tabId.forEach(id => {
+        deleteProjectBtn[id] = document.getElementById("button"+id);
+
+		deleteProjectBtn[id].addEventListener("click", () => {deleteProject(id)});
     });
 }
 
+function deleteProject(id){
+	let myHeaders = new Headers();
+    myHeaders.append("X-AUTH-TOKEN", getToken());
 
-                //<div class="d-flex gap-2 flex-wrap justify-content-center py-5">
-                    //<img src="/assets/images/skills/php.png" width="36" alt="PHP" class="img">
-                    //<img src="/assets/images/skills/scss.png" width="36" alt="SCSS" class="img">
-                    //<img src="/assets/images/skills/symfony.png" width="36" alt="SYMFONY" class="img">
-                //</div>
+	let requestOptions = {
+		method : 'DELETE',
+		headers : myHeaders,
+        redirect: 'follow',
+	};
+
+	// Envoi une requete au serveur
+	fetch(`${apiUrl}project/${id}`, requestOptions)
+	.then(response =>{
+		if(response.status === 204){
+			return null;
+		}
+
+		if(!response.ok){
+			throw new Error("Erreur lors de la suppression du projet");
+		}
+
+		return response.json();
+	})
+	.then(() =>{
+		console.log(`Projet ${id} supprimé`);
+		
+		const btn = document.getElementById(`button${id}`);
+
+        if (btn) {
+            btn.closest(".project").remove();
+        }
+	})
+	.catch(error => {
+		console.log("Erreur lors de la suppression du projet :", error);
+	});
+}
