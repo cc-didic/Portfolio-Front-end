@@ -1,6 +1,7 @@
 
 
 getAllProjects();
+getAllSkills();
 
 function getAllProjects(){
 
@@ -119,4 +120,47 @@ function deleteProject(id){
 	.catch(error => {
 		console.log("Erreur lors de la suppression du projet :", error);
 	});
+}
+
+function getAllSkills(){
+	let myHeaders = new Headers();
+    myHeaders.append("X-AUTH-TOKEN", getToken());
+
+	let requestOptions = {
+		method : 'GET',
+		headers : myHeaders,
+        redirect: 'follow',
+	};
+
+	// Envoi une requete au serveur
+	return fetch(`${apiUrl}skills`, requestOptions)
+	.then(response =>{
+		if(response.ok){
+			return response.json();
+		}
+		else{
+			console.log("Impossible de récupérer les compétences")
+		}
+	})
+	.then(result => {
+		const allSkills = document.getElementById("skills-img");
+    	const template = document.getElementById("skill-template");
+
+    	if(!template){
+        	console.error("template project-template introuvable");
+        	return;
+    	}
+		
+		result.forEach(skill => {
+			console.log(skill.logo);
+		 	const clone = template.content.cloneNode(true);
+		
+			// Ajout de l'url de l'image
+        	clone.querySelector(".skill-img").src = `/assets/images/skills/${skill.logo}`;
+			// Ajout du titre
+        	clone.querySelector(".skill-img").alt = skill.name;
+
+        	allSkills.appendChild(clone);
+    	});
+	})
 }
