@@ -1,4 +1,4 @@
-const allProjects = document.getElementById("all-projects");
+
 
 getAllProjects();
 
@@ -32,7 +32,7 @@ function getAllProjects(){
 }
 
 function showAllProjects(result){
-
+	const allProjects = document.getElementById("all-projects");
     const template = document.getElementById("project-template");
 	let tabId = [];
 
@@ -51,8 +51,6 @@ function showAllProjects(result){
 		clone.querySelector(".project-edit").id = `editBtn${project.id}`;
 		// Ajout de l'id deleteBtn{id} à l'id project-delete
 		clone.querySelector(".project-delete").id = `deleteBtn${project.id}`;
-		// Ajout de l'id skillsBtn{id} à l'id project-skills
-		clone.querySelector(".project-skills").id = `skillsBtn${project.id}`;
 		// Ajout de l'url de l'image
         clone.querySelector(".project-image").src = `/assets/images/project/${project.image}`;
 		// Ajout du titre
@@ -72,21 +70,14 @@ function showAllProjects(result){
 function getListenEvent(tabId){
 	const deleteProjectBtn = [];
 	const editProjectBtn = [];
-	const skillsProjectBtn = [];
 
 	tabId.forEach(id => {
 		editProjectBtn[id] = document.getElementById(`editBtn${id}`);
         deleteProjectBtn[id] = document.getElementById(`deleteBtn${id}`);
-		skillsProjectBtn[id] = document.getElementById(`skillsBtn${id}`);
 
 		editProjectBtn[id].addEventListener("click", () => {editProject(id)});
 		deleteProjectBtn[id].addEventListener("click", () => {deleteProject(id)});
-		skillsProjectBtn[id].addEventListener("click", () => {skillsProject(id)});
     });
-}
-
-function skillsProject(id){
-	globalThis.location.href = `/skills-project?id=${id}`;
 }
 
 function editProject(id){
