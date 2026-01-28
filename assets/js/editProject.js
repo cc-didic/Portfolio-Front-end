@@ -2,8 +2,6 @@
 const params = new URLSearchParams(globalThis.location.search);
 const projectId = params.get("id");
 
-const skillChecked = [];
-
 // Constante qui va nous servir a écouter les events du bouton
 const editProjectBtn = document.getElementById("edit-project-btn");
 
@@ -41,7 +39,7 @@ function getProjectById(projectId){
         document.getElementById("ImageInput").value = result.image;
         document.getElementById("GithubInput").value = result.githubUrl;
         document.getElementById("LiveInput").value = result.liveUrl;
-		console.log(result.skills.length);
+
 		for(let i=0; i<result.skills.length; i++)
 		{
 		
@@ -66,7 +64,7 @@ function editProject(id){
         image: document.getElementById("ImageInput").value,
         github_url: document.getElementById("GithubInput").value,
         live_url: document.getElementById("LiveInput").value,
-		skills: skillChecked
+		skills: getCheckedSkills()
     };
 
 	let requestOptions = {
@@ -92,7 +90,7 @@ function editProject(id){
 }
 
 // On récupère toutes les compétences pour les afficher dans une chekbox
-function getSkills(){
+async function getSkills(){
 	let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
 
@@ -115,9 +113,6 @@ function getSkills(){
 	.then(result => {
 		const skills = document.getElementById("skillsId");
 		const ul = document.createElement("ul");
-		const allSkillsBtn = [];
-		const allSkillsId = [];
-		let index = 0;
 
 		ul.className = "list-group d-flex flex-row flex-wrap justify-content-center gap-2";
 
@@ -142,12 +137,6 @@ function getSkills(){
 			ul.appendChild(li);
 			skills.appendChild(ul);
 
-			allSkillsBtn.push(document.getElementById(`checkbox${skill.id}`));
-			allSkillsId.push(skill.id);
-
-			allSkillsBtn[index].addEventListener("click", () => allSkillCheck(allSkillsId));
-			
-			index++;
     	});
 	})
 	.catch(error => {
@@ -156,18 +145,17 @@ function getSkills(){
 }
 
 // On vérifie si des compétences ont étaient cochés et on récupère leurs valeurs en int
-function allSkillCheck(skillId){
-	let skillCheck = [];
+function getCheckedSkills(){
+	// Tableau qui contiendra les IDs des compétences cochées
+    const checked = [];
 
-	skillChecked.length = 0;
+    // On sélectionne toutes les checkboxes cochées
+    document.querySelectorAll('#skillsId input[type="checkbox"]:checked')
+        .forEach(cb => {
+            // On ajoute les valeur des checkboxes cochées
+            checked.push(Number(cb.value));
+        });
 
-	for(let i=0; i<skillId.length; i++)
-	{
-		skillCheck[i] = document.getElementById(`checkbox${skillId[i]}`).checked;
-
-		if(skillCheck[i])
-		{
-			skillChecked.push(Number.parseInt(document.getElementById(`checkbox${skillId[i]}`).value));
-		}
-	}
+    // On retourne le tableau des IDs des compétences cochées
+    return checked;
 }

@@ -34,8 +34,12 @@ function getAllProjects(){
 
 function showAllProjects(result){
 	const allProjects = document.getElementById("all-projects");
+	//const allSkills = document.getElementById("all-skills");
     const template = document.getElementById("project-template");
+	//const templateSkills = clone.querySelector("#project-skills-template");
 	let tabId = [];
+	const allDataProject = [];
+	
 
     if(!template){
         console.error("template project-template introuvable");
@@ -63,9 +67,23 @@ function showAllProjects(result){
 		// Ajout du lien live
         clone.querySelector(".project-live").href = `Https://${project.liveUrl}`;
 
-        allProjects.appendChild(clone);
+		const skillsContainer = clone.querySelector(".project-skills");
+		project.skills.forEach(skill => {
+        	const img = document.createElement("img");
+        	img.src = `/assets/images/skills/${skill.logo}`;
+        	img.alt = skill.name;
+        	img.width = 36;
+			img.className = "img";
+
+        	skillsContainer.appendChild(img);
+    	});
+
+    	allProjects.appendChild(clone);
+		
     });
+	
 	getListenEvent(tabId);
+	
 }
 
 function getListenEvent(tabId){
@@ -152,7 +170,6 @@ function getAllSkills(){
     	}
 		
 		result.forEach(skill => {
-			console.log(skill.logo);
 		 	const clone = template.content.cloneNode(true);
 		
 			// Ajout de l'url de l'image
