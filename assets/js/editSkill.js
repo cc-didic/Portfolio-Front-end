@@ -12,6 +12,7 @@ getSkillById(skillId);
 function getSkillById(skillId){
     let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+    myHeaders.append("Content-Type", "application/json");
 
 	let requestOptions = {
 		method : 'GET',
@@ -41,6 +42,7 @@ function getSkillById(skillId){
 function editSkill(id){
     let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+    myHeaders.append("Content-Type", "application/json");
 
     const data = {
         name: document.getElementById("NameInput").value,

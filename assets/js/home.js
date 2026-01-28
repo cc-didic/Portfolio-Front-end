@@ -1,6 +1,5 @@
-// const skillParameterBtn = document.getElementById("skill-parameter");
-
-// skillParameterBtn.addEventListener("click", getSkillParameter);
+const connected = isConnected();
+console.log(connected);
 
 getAllProjects();
 getAllSkills();
@@ -8,7 +7,7 @@ getAllSkills();
 function getAllProjects(){
 
     let myHeaders = new Headers();
-    myHeaders.append("X-AUTH-TOKEN", getToken());
+    myHeaders.append("Content-Type", "application/json");
 
 	let requestOptions = {
 		method : 'GET',
@@ -54,6 +53,13 @@ function showAllProjects(result){
 		clone.querySelector(".project-edit").id = `editBtn${project.id}`;
 		// Ajout de l'id deleteBtn{id} à l'id project-delete
 		clone.querySelector(".project-delete").id = `deleteBtn${project.id}`;
+
+		// On enlève les boutons si on est pas connecté
+		if(!connected){
+			clone.querySelector(".project-edit")?.remove();
+    		clone.querySelector(".project-delete")?.remove();
+		}
+		
 		// Ajout de l'url de l'image
         clone.querySelector(".project-image").src = `/assets/images/project/${project.image}`;
 		// Ajout du titre
@@ -80,8 +86,10 @@ function showAllProjects(result){
 		
     });
 	
-	getListenEventProject(tabId);
-	
+	// On gère les events des boutons seulement si l'on est connecté
+	if(connected){
+		getListenEventProject(tabId);
+	}
 }
 
 function getListenEventProject(tabId){
@@ -104,6 +112,7 @@ function editProject(id){
 function deleteProject(id){
 	let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+	myHeaders.append("Content-Type", "application/json");
 
 	let requestOptions = {
 		method : 'DELETE',
@@ -140,7 +149,7 @@ function deleteProject(id){
 
 async function getAllSkills(){
 	let myHeaders = new Headers();
-    myHeaders.append("X-AUTH-TOKEN", getToken());
+	myHeaders.append("Content-Type", "application/json");
 	let tabId = [];
 
 	let requestOptions = {
@@ -178,6 +187,17 @@ async function getAllSkills(){
 			clone.querySelector(".skill-edit").id = `editSkillBtn${skill.id}`;
 			// Ajout de l'id deleteBtn{id} à l'id project-delete
 			clone.querySelector(".skill-delete").id = `deleteSkillBtn${skill.id}`;
+
+			if(!connected){
+				clone.querySelector(".skill-edit")?.remove();
+    			clone.querySelector(".skill-delete")?.remove();
+
+				clone.querySelector(".skills").className = "row g-4 col-md-1 skills";
+			}
+			else{
+				clone.querySelector(".skills").className = "row g-4 col-md-3 skills";
+			}
+
 			// Ajout de l'url de l'image
         	clone.querySelector(".skill-img").src = `/assets/images/skills/${skill.logo}`;
 			// Ajout du titre
@@ -185,7 +205,10 @@ async function getAllSkills(){
 
         	allSkills.appendChild(clone);
     	});
-		getListenEventSkill(tabId);
+
+		if(connected){
+			getListenEventSkill(tabId);
+		}
 	})
 }
 
@@ -209,6 +232,7 @@ function editSkill(id){
 function deleteSkill(id){
 	let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+	myHeaders.append("Content-Type", "application/json");
 
 	let requestOptions = {
 		method : 'DELETE',

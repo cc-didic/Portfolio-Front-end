@@ -4,8 +4,8 @@ createSkillBtn.addEventListener("click", createSkill);
 
 function createSkill(){
     let myHeaders = new Headers();
-
     myHeaders.append("X-AUTH-TOKEN", getToken());
+    myHeaders.append("Content-Type", "application/json");
 
     const data = {
         name: document.getElementById("NameInput").value,

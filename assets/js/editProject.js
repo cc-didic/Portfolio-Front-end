@@ -16,6 +16,7 @@ getSkills().then(() => {
 function getProjectById(projectId){
     let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+	myHeaders.append("Content-Type", "application/json");
 
 	let requestOptions = {
 		method : 'GET',
@@ -57,6 +58,7 @@ function getProjectById(projectId){
 function editProject(id){
     let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+	myHeaders.append("Content-Type", "application/json");
 
     const data = {
         title: document.getElementById("TitleInput").value,
@@ -93,6 +95,7 @@ function editProject(id){
 async function getSkills(){
 	let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+	myHeaders.append("Content-Type", "application/json");
 
 	let requestOptions = {
 		method : 'GET',
