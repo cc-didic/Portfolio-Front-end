@@ -46,13 +46,23 @@
 
 </section>
 
-<section class="container mb-5 pt-5">
+<section class="container mb-4 pt-5">
     <h2 class="text-center mb-5">Mes compétences</h2>
-    
+       
     <div class="row g-4 justify-content-center" id="skills-img">
         <template id="skill-template">
-            <div class="skill justify-content-center mx-2">
-                <img class="img skill-img" width="36">
+            <div class="row g-4 col-md-3 skills">
+                <div class="skill justify-content-center mx-2">
+                    <button type="button" class="btn btn-outline-primary skill-edit"><i class="bi bi-pencil"></i></button>
+                </div>
+
+                <div class="skill justify-content-center mx-2">
+                    <img class="img skill-img" width="36">   
+                </div>
+
+                <div class="skill justify-content-center mx-2">
+                    <button type="button" class="btn btn-outline-primary skill-delete"><i class="bi bi-trash"></i></button>
+                </div>
             </div>
         </template>
     </div>

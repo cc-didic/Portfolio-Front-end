@@ -21,7 +21,8 @@ export const allRoutes = [
     new Route("/create-project", "Ajouter un projet", "/pages/auth/createProject.html", ["ROLE_ADMIN"], "/assets/js/createProject.js"),
     new Route("/create-skill", "Ajouter une compétence", "/pages/createSkill.html", ["ROLE_ADMIN"], "/assets/js/createSkill.js"),
     new Route("/edit-project", "Modifier un projet", "/pages/editProject.html", ["ROLE_ADMIN"], "/assets/js/editProject.js"),
-     new Route("/skills-project", "Modier les compétence du projet", "/pages/skillsProject.html", ["ROLE_ADMIN"], "/assets/js/skillsProject.js"),
+    new Route("/skills-project", "Modier les compétence du projet", "/pages/skillsProject.html", ["ROLE_ADMIN"], "/assets/js/skillsProject.js"),
+    new Route("/edit-skill", "Modifier une compétence", "/pages/editSkill.html", ["ROLE_ADMIN"], "/assets/js/editSkill.js"),
 ];
 
 // Le titre s'affiche comme ceci : Route.titre - websitename

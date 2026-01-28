@@ -1,4 +1,6 @@
+// const skillParameterBtn = document.getElementById("skill-parameter");
 
+// skillParameterBtn.addEventListener("click", getSkillParameter);
 
 getAllProjects();
 getAllSkills();
@@ -34,12 +36,8 @@ function getAllProjects(){
 
 function showAllProjects(result){
 	const allProjects = document.getElementById("all-projects");
-	//const allSkills = document.getElementById("all-skills");
     const template = document.getElementById("project-template");
-	//const templateSkills = clone.querySelector("#project-skills-template");
 	let tabId = [];
-	const allDataProject = [];
-	
 
     if(!template){
         console.error("template project-template introuvable");
@@ -82,11 +80,11 @@ function showAllProjects(result){
 		
     });
 	
-	getListenEvent(tabId);
+	getListenEventProject(tabId);
 	
 }
 
-function getListenEvent(tabId){
+function getListenEventProject(tabId){
 	const deleteProjectBtn = [];
 	const editProjectBtn = [];
 
@@ -140,9 +138,10 @@ function deleteProject(id){
 	});
 }
 
-function getAllSkills(){
+async function getAllSkills(){
 	let myHeaders = new Headers();
     myHeaders.append("X-AUTH-TOKEN", getToken());
+	let tabId = [];
 
 	let requestOptions = {
 		method : 'GET',
@@ -171,7 +170,14 @@ function getAllSkills(){
 		
 		result.forEach(skill => {
 		 	const clone = template.content.cloneNode(true);
+
+			// On récupère les id de tous les projets
+			tabId.push(skill.id);
 		
+			// Ajout de l'id editBtn{id} à l'id project-edit
+			clone.querySelector(".skill-edit").id = `editSkillBtn${skill.id}`;
+			// Ajout de l'id deleteBtn{id} à l'id project-delete
+			clone.querySelector(".skill-delete").id = `deleteSkillBtn${skill.id}`;
 			// Ajout de l'url de l'image
         	clone.querySelector(".skill-img").src = `/assets/images/skills/${skill.logo}`;
 			// Ajout du titre
@@ -179,5 +185,63 @@ function getAllSkills(){
 
         	allSkills.appendChild(clone);
     	});
+		getListenEventSkill(tabId);
 	})
+}
+
+function getListenEventSkill(tabId){
+	const deleteSkillBtn = [];
+	const editSkillBtn = [];
+
+	tabId.forEach(id => {
+		editSkillBtn[id] = document.getElementById(`editSkillBtn${id}`);
+        deleteSkillBtn[id] = document.getElementById(`deleteSkillBtn${id}`);
+
+		editSkillBtn[id].addEventListener("click", () => {editSkill(id)});
+		deleteSkillBtn[id].addEventListener("click", () => {deleteSkill(id)});
+    });
+}
+
+function editSkill(id){
+	globalThis.location.href = `/edit-skill?id=${id}`;
+}
+
+function deleteSkill(id){
+	let myHeaders = new Headers();
+    myHeaders.append("X-AUTH-TOKEN", getToken());
+
+	let requestOptions = {
+		method : 'DELETE',
+		headers : myHeaders,
+        redirect: 'follow',
+	};
+
+	// Envoi une requete au serveur
+	fetch(`${apiUrl}skill/${id}`, requestOptions)
+	.then(response =>{
+		if(response.status === 204){
+			return null;
+		}
+
+		if(!response.ok){
+			throw new Error("Erreur lors de la suppression de la compétence");
+		}
+
+		return response.json();
+	})
+	.then(() =>{
+		console.log(`Compétence ${id} supprimée`);
+		
+		// On récupère le bouton avec l'id
+		const deleteSkillbtn = document.getElementById(`deleteSkillBtn${id}`);
+
+		// On vérifie si le bouton existe
+        if (deleteSkillbtn) {
+			// On supprime le parent qui a la class skills
+            deleteSkillbtn.closest(".skills").remove();
+        }
+	})
+	.catch(error => {
+		console.log("Erreur lors de la suppression du projet :", error);
+	});
 }
